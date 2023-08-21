@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safadometro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Bem vindo ao Safadômetro</h1>
+  
+    <label for="dia">Dia:</label>
+    <input type="text" id="dia" name="dia"><br>
+    
+    <label for="mes">Mês:</label>
+    <input type="text" id="mes" name="mes"><br>
+    
+    <label for="ano">Ano:</label>
+    <input type="text" id="ano" name="ano"><br>
+    
+    <button onclick="calcular()">Calcular</button>
+    
+    <label id="resultado"></label>
+
+    <script>
+        function somatorio(num) {
+            soma = 0;
+            for (i = 1; i <= num; i++) {
+                soma += i;
+            }
+            return soma;
+        }
+
+        function wesley_safadao(dia, mes, ano) {
+            if (dia > 31 || dia < 0 || mes > 12 || mes < 0 || ano > 99 || ano < 0) {
+                return 'Data inválida';
+            }
+            var safadeza = somatorio(mes) + (ano / 100) * (50 - dia);
+            var anjo = 100 - safadeza;
+            return `Você é ${anjo}% anjo, e ${safadeza}% safado.`;
+        }
+
+
+        function calcular() {
+            var dia = parseInt(document.getElementById("dia").value);
+            var mes = parseInt(document.getElementById("mes").value);
+            var ano = parseInt(document.getElementById("ano").value);
+            
+            resultado = wesley_safadao(dia, mes, ano);
+
+            document.getElementById("resultado").textContent = `${resultado}`
+        }
+    </script>
+
+</body>
+</html>
